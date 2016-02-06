@@ -1,0 +1,11 @@
+docker-machine create -d openstack \
+--openstack-ssh-user=debian \
+--openstack-flavor-name="Small OS" \
+--openstack-image-name="Debian-8.3" \
+--engine-install-url=http://128.199.125.31 consul
+
+docker run -d \
+--net=host \
+--name=consul \
+progrium/consul:latest \
+-server -bootstrap-expect 1 -ui-dir /ui
